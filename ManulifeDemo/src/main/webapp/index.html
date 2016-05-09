@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<link href="theme/sidebar/css/simple-sidebar.css" rel="stylesheet" type="text/css">
+	<link href="theme/sidebar/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+	
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+	<script src='js/app/angular.min.js'></script>
+	<script src="js/app/fusionchart/fusioncharts.js"></script>
+	<script src="js/app/fusionchart/fusioncharts.charts.js"></script>	
+	<script src="theme/datepicker/prefixfree.min.js"></script>
+	<script src="js/app/fusionchart/themes/fusioncharts.theme.fint.js"></script>
+	<!-- <script src="theme/chart/angular-chart.js"></script>
+	<script src="theme/chart/Chart.js"></script> 
+	<link href="theme/chart/angular-chart.css" rel="stylesheet" type="text/css">-->
+	<!-- <script type="text/javascript">
+ FusionCharts.ready()
+
+</script> -->
+</head>
+<body  ng-app="myApp">
+	<div id="wrapper" ng-controller="ReportController as rpt_ctrl">
+		<div id="sidebar-wrapper">
+	    	<ul class="sidebar-nav">
+	        	<li class="sidebar-brand">
+					<a href="#">Top 5 Most Visited Sites</a>
+	           	</li>
+	      		<li>
+	  				<a href="#">Home</a>
+	  			</li>
+	  			<!-- <li>
+					<a href="#">Manage Report</a>
+	   			</li> -->
+			</ul>
+		</div>
+		
+		<!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+            	<div class="row">
+            		<div class="col-sm-12"><h1>Top 5 Most visited Sites</h1></div>
+            		<div>
+                        <span>Start Date:</span> <input ng-model="rpt_ctrl.report.startDate" id="startDate" type="text" datepicker> 
+                        <span>End Date:</span> <input ng-model="rpt_ctrl.report.endDate" id="endDate" type="text" datepicker>
+						<input type="button" ng-click="rpt_ctrl.getReport()" value="Search">
+                   </div>
+            	</div>
+                 <div class="row">
+                	<div class="col-sm-6">
+                		<div style="padding: 20px;">
+	                		<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Rank</th>
+										<th>Website</th>
+										<th>Total Visits</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="report in rpt_ctrl.reports | limitTo:rpt_ctrl.displayLimit" >
+										<td align="center">{{$index + 1}}</td>
+										<td> <a href="{{report.url}}"> <span ng-bind="report.websiteName"></a></span></td>
+										<td><span ng-bind="report.totalVisits"></span></td>
+									</tr>
+								</tbody>				
+							</table>
+						</div>
+	                </div>
+                	<div class="col-sm-6">
+					    <div id="chartContainer" style="border: thin, 1px;"></div>
+                	</div>
+                </div>
+            </div>
+            
+        </div>
+		
+	</div>
+
+<script src="js/app/report_app.js"></script>
+<script src="js/service/report_service.js"></script>
+<script src="js/controller/report_controller.js"></script>
+		
+</body>
+</html>
