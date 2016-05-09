@@ -22,12 +22,12 @@ public class ReportController {
 	@Autowired
 	private ReportServices reportServices;
 	
-	@RequestMapping(method=RequestMethod.GET, produces="application/json", path="/list/websites")
+	@RequestMapping(method=RequestMethod.GET, produces="application/json", value="/list/websites")
 	public List<WebsiteEntity> getWebsiteList(){
 		 return reportServices.getWebsites();
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, produces="application/json", path="/list/reports")
+	@RequestMapping(method=RequestMethod.GET, produces="application/json", value="/list/reports")
 	public List<ReportDto> getWebsiteVisitReport(@PathParam("startDate")String startDate,
 			@PathParam("endDate")String endDate){
 		

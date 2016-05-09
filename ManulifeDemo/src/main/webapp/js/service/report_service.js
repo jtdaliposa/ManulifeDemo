@@ -6,7 +6,7 @@ myApp.factory('ReportService', [
 			return {
 
 				fetchAllWebsites : function() {
-					return $http.get('http://localhost:8080/list/websites')
+					return $http.get('/ManulifeDemo/list/websites')
 							.then(function(response) {
 								return response.data;
 							}, function(errResponse) {
@@ -17,7 +17,7 @@ myApp.factory('ReportService', [
 
 				getReports : function(startDate, endDate, website) {
 					return $http.get(
-							'http://localhost:8080/list/reports?startDate='
+							'/ManulifeDemo/list/reports?startDate='
 									+ startDate + '&endDate=' + endDate
 									+ '&website=' + website).then(
 							function(response) {
